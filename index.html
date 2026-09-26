@@ -7,411 +7,349 @@
 <meta name="description" content="Anas Asim, Senior Flutter Developer specializing in delivery, e-commerce and payment-integrated mobile apps for Arabic-speaking markets.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#10131a; --bg-alt:#161b25; --line:#252b38;
-    --text:#e9ebef; --text-dim:#8b93a3;
-    --accent:#37c6ae; --accent-soft:#1f4a44;
-    --font-display:'Fraunces', serif; --font-body:'IBM Plex Sans', sans-serif;
+    --bg-top:#060b16; --bg-bot:#0a2138; --ink:#eaf2fb; --ink-dim:#8ea0b8;
+    --glass:rgba(255,255,255,.045); --glass-b:rgba(255,255,255,.1);
+    --accent:#22d3ee; --accent-2:#3b82f6;
+    --font-display:'Sora', sans-serif; --font-body:'Inter', sans-serif;
   }
   *{box-sizing:border-box; margin:0; padding:0;}
   html{scroll-behavior:smooth;}
-  body{background:var(--bg); color:var(--text); font-family:var(--font-body); line-height:1.6; -webkit-font-smoothing:antialiased;}
+  body{
+    background:linear-gradient(180deg,var(--bg-top) 0%, var(--bg-bot) 55%, #071426 100%);
+    color:var(--ink); font-family:var(--font-body); line-height:1.6; -webkit-font-smoothing:antialiased; overflow-x:hidden;
+  }
   a{color:inherit; text-decoration:none;}
   img{max-width:100%; display:block;}
-  .wrap{max-width:1000px; margin:0 auto; padding:0 28px;}
-  section{padding:96px 0;}
+  .wrap{max-width:1080px; margin:0 auto; padding:0 24px;}
+  section{padding:88px 0; position:relative;}
   h1,h2,h3{font-family:var(--font-display); font-weight:600; line-height:1.15;}
 
-  header{position:sticky; top:0; z-index:20; backdrop-filter:blur(10px); background:rgba(16,19,26,.75); border-bottom:1px solid var(--line);}
-  header .wrap{display:flex; justify-content:space-between; align-items:center; padding-top:18px; padding-bottom:18px;}
-  .logo{font-family:var(--font-display); font-size:1.15rem; letter-spacing:.02em;}
-  nav a{margin-left:28px; font-size:.92rem; color:var(--text-dim); transition:color .2s;}
-  nav a:hover{color:var(--text);}
+  #progress{position:fixed; top:0; left:0; height:3px; width:0%; background:var(--accent); box-shadow:0 0 12px var(--accent); z-index:40;}
 
-  .hero{padding:110px 0 60px;}
-  .hero-grid{display:grid; grid-template-columns:1.15fr .85fr; gap:56px; align-items:center;}
-  .hero h1{font-size:clamp(2.4rem, 5vw, 3.6rem); max-width:11ch;}
-  .hero p.lede{margin-top:22px; color:var(--text-dim); font-size:1.08rem; max-width:46ch;}
-  .stats{display:flex; gap:36px; margin-top:40px; flex-wrap:wrap;}
-  .stat b{display:block; font-family:var(--font-display); font-size:1.7rem;}
-  .stat span{color:var(--text-dim); font-size:.85rem;}
-  .cta-row{margin-top:40px; display:flex; gap:14px; flex-wrap:wrap;}
-  .btn{padding:12px 22px; border-radius:3px; font-size:.92rem; border:1px solid var(--line); transition:.2s;}
-  .btn.primary{background:var(--accent); color:#0b0f0e; border-color:var(--accent);}
-  .btn.primary:hover{filter:brightness(1.08);}
-  .btn.ghost:hover{border-color:var(--text-dim);}
+  .glass{background:var(--glass); border:1px solid var(--glass-b); border-radius:16px; backdrop-filter:blur(14px);}
 
-  .route-box{position:relative;}
-  .route-box svg{width:100%; height:auto;}
-  .route-path{stroke:var(--accent); stroke-width:2.5; fill:none; stroke-dasharray:600; stroke-dashoffset:600; animation:draw 2.2s ease-out .3s forwards;}
-  .route-pin{opacity:0; animation:pop .4s ease-out forwards;}
-  .route-pin.a{animation-delay:.3s;}
-  .route-pin.b{animation-delay:2.4s;}
-  @keyframes draw{to{stroke-dashoffset:0;}}
-  @keyframes pop{from{opacity:0; transform:scale(.4);} to{opacity:1; transform:scale(1);}}
-  @media (prefers-reduced-motion:reduce){
-    .route-path{animation:none; stroke-dashoffset:0;}
-    .route-pin{animation:none; opacity:1;}
-  }
+  /* ---- bubbles ---- */
+  .bubbles{position:absolute; inset:0; overflow:hidden; pointer-events:none; z-index:0;}
+  .bubble{position:absolute; bottom:-60px; border-radius:50%; background:radial-gradient(circle at 30% 30%, rgba(34,211,238,.35), rgba(34,211,238,0) 70%); animation:rise linear infinite;}
+  @keyframes rise{ to{ transform:translateY(-620px); opacity:0; } }
+  @media (prefers-reduced-motion:reduce){ .bubble{animation:none; display:none;} }
+
+  /* ---- header ---- */
+  header{position:sticky; top:0; z-index:30; background:rgba(6,11,22,.6); backdrop-filter:blur(10px); border-bottom:1px solid var(--glass-b);}
+  header .wrap{display:flex; justify-content:space-between; align-items:center; padding:16px 24px;}
+  .logo{font-family:var(--font-display); font-weight:700; font-size:1.05rem;}
+  .logo span{color:var(--accent);}
+  nav.desktop-nav{display:flex; gap:30px;}
+  nav.desktop-nav a{font-size:.88rem; color:var(--ink-dim); transition:color .2s; position:relative;}
+  nav.desktop-nav a::after{content:''; position:absolute; left:0; bottom:-6px; width:0; height:2px; background:var(--accent); box-shadow:0 0 8px var(--accent); transition:width .25s;}
+  nav.desktop-nav a:hover, nav.desktop-nav a.active{color:var(--ink);}
+  nav.desktop-nav a:hover::after, nav.desktop-nav a.active::after{width:100%;}
+  .burger{display:none; flex-direction:column; gap:5px; background:none; border:none; cursor:pointer; padding:6px;}
+  .burger span{width:22px; height:2px; background:var(--ink); transition:.25s;}
+  .burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+  .burger.open span:nth-child(2){opacity:0;}
+  .burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+  .mobile-nav{display:none; position:fixed; inset:0; top:57px; background:#060b16; z-index:25; padding:32px 24px; flex-direction:column; gap:22px;}
+  .mobile-nav.open{display:flex;}
+  .mobile-nav a{font-family:var(--font-display); font-size:1.6rem; font-weight:600;}
+  @media (max-width:760px){ nav.desktop-nav{display:none;} .burger{display:flex;} }
+
+  /* ---- hero ---- */
+  .hero{padding:100px 0 60px; min-height:70vh; display:flex; align-items:center;}
+  .hero-inner{position:relative; z-index:1;}
+  .kicker{font-size:.85rem; color:var(--accent); letter-spacing:.04em; margin-bottom:18px;}
+  .hero h1{font-size:clamp(2.2rem,6vw,3.6rem); max-width:15ch;}
+  .hero h1 em{font-style:normal; background:linear-gradient(90deg,var(--accent),var(--accent-2)); -webkit-background-clip:text; background-clip:text; color:transparent;}
+  .hero p.lede{margin-top:20px; color:var(--ink-dim); font-size:1.06rem; max-width:50ch;}
+  .cta-row{margin-top:34px; display:flex; gap:14px; flex-wrap:wrap;}
+  .btn{padding:13px 26px; border-radius:30px; font-size:.9rem; font-weight:600; border:1px solid var(--glass-b); transition:.25s;}
+  .btn.primary{background:linear-gradient(90deg,var(--accent-2),var(--accent)); color:#03111c;}
+  .btn.primary:hover{filter:brightness(1.1); box-shadow:0 0 24px rgba(34,211,238,.4);}
+  .btn.ghost:hover{border-color:var(--accent); color:var(--accent);}
+  .stat-row{display:flex; gap:40px; margin-top:52px; flex-wrap:wrap;}
+  .stat b{display:block; font-family:var(--font-display); font-size:1.7rem; background:linear-gradient(90deg,var(--accent),var(--accent-2)); -webkit-background-clip:text; background-clip:text; color:transparent;}
+  .stat span{color:var(--ink-dim); font-size:.82rem;}
+
+  /* ---- section head ---- */
+  .section-head{margin-bottom:44px;}
+  .section-head .eyebrow{color:var(--accent); font-size:.82rem; margin-bottom:6px;}
+  .section-head h2{font-size:1.7rem;}
 
   /* ---- about ---- */
-  .about-grid{display:grid; grid-template-columns:.7fr 1.3fr; gap:48px; align-items:center;}
-  .about-grid img{border-radius:50%; max-width:220px; margin:0 auto;}
-  .about-grid p{color:var(--text-dim); font-size:1rem; max-width:56ch;}
+  .about-grid{display:grid; grid-template-columns:190px 1fr; gap:40px; align-items:center; padding:36px;}
+  .about-grid img{border-radius:14px;}
+  .about-grid p{color:var(--ink-dim); max-width:58ch;}
+  @media (max-width:640px){ .about-grid{grid-template-columns:1fr; text-align:center; padding:28px;} .about-grid img{margin:0 auto; max-width:150px;} }
 
-  .section-head{display:flex; justify-content:space-between; align-items:baseline; margin-bottom:44px; border-bottom:1px solid var(--line); padding-bottom:18px;}
-  .section-head h2{font-size:1.7rem;}
-  .section-head .count{color:var(--text-dim); font-size:.9rem;}
+  /* ---- work carousel ---- */
+  .carousel-wrap{position:relative;}
+  .work-carousel{display:flex; gap:20px; overflow-x:auto; scroll-snap-type:x mandatory; padding:6px 6px 22px; scrollbar-width:thin;}
+  .work-carousel::-webkit-scrollbar{height:6px;}
+  .work-carousel::-webkit-scrollbar-thumb{background:var(--glass-b); border-radius:6px;}
+  .project{scroll-snap-align:start; flex:0 0 auto; width:280px; padding:24px; transition:transform .3s, border-color .3s;}
+  .project:hover{transform:translateY(-6px); border-color:var(--accent);}
+  .project-top{display:flex; align-items:center; gap:12px; margin-bottom:14px;}
+  .project-top img{width:48px; height:48px; object-fit:contain; border-radius:10px; background:rgba(255,255,255,.06); padding:6px;}
+  .project-top .tag{font-size:.72rem; color:var(--accent);}
+  .project h3{font-size:1.05rem; margin-top:2px;}
+  .project h3 span.sub{color:var(--ink-dim); font-size:.76rem; font-weight:400; font-family:var(--font-body); display:block; margin-top:2px;}
+  .project p{color:var(--ink-dim); font-size:.88rem; margin-bottom:14px;}
+  .chips{display:flex; flex-wrap:wrap; gap:6px; margin-bottom:14px;}
+  .chip{font-size:.7rem; color:var(--ink-dim); border:1px solid var(--glass-b); padding:3px 9px; border-radius:20px;}
+  .store-links{display:flex; gap:8px;}
+  .store-links a{display:inline-flex; align-items:center; gap:5px; font-size:.74rem; color:var(--ink); border:1px solid var(--glass-b); padding:6px 11px; border-radius:20px; transition:.2s;}
+  .store-links a:hover{color:#03111c; background:var(--accent); border-color:var(--accent);}
+  .store-links svg{width:12px; height:12px; fill:currentColor;}
+  .carousel-nav{display:flex; gap:10px; margin-top:6px;}
+  .carousel-nav button{width:38px; height:38px; border-radius:50%; border:1px solid var(--glass-b); background:var(--glass); color:var(--ink); cursor:pointer; font-size:1rem;}
+  .carousel-nav button:hover{border-color:var(--accent); color:var(--accent);}
 
-  .job{display:grid; grid-template-columns:170px 1fr; gap:24px; padding:26px 0; border-bottom:1px solid var(--line);}
-  .job:last-child{border-bottom:none;}
-  .job .when{color:var(--text-dim); font-size:.88rem; padding-top:3px;}
-  .job h3{font-size:1.15rem; font-weight:500; font-family:var(--font-body);}
-  .job .role{color:var(--accent); font-size:.85rem; margin-top:2px; margin-bottom:10px;}
-  .job p{color:var(--text-dim); font-size:.95rem; max-width:60ch;}
-  @media (max-width:640px){ .job{grid-template-columns:1fr;} }
+  /* ---- experience ---- */
+  .timeline{position:relative; padding-left:28px;}
+  .timeline::before{content:''; position:absolute; left:6px; top:6px; bottom:6px; width:1px; background:var(--glass-b);}
+  .job{position:relative; padding:20px 0 20px 24px; margin-bottom:6px;}
+  .job::before{content:''; position:absolute; left:-28px; top:26px; width:11px; height:11px; border-radius:50%; background:var(--accent); box-shadow:0 0 10px var(--accent);}
+  .job h3{font-size:1.05rem; font-weight:600;}
+  .job .when{font-size:.78rem; color:var(--accent); margin:3px 0 8px;}
+  .job p{color:var(--ink-dim); font-size:.92rem; max-width:62ch;}
 
-  .projects{display:flex; flex-direction:column; gap:18px;}
-  .project{display:grid; grid-template-columns:.9fr 1.4fr; gap:0; background:var(--bg-alt); border:1px solid var(--line);}
-  .project-visual{position:relative; min-height:200px; overflow:hidden; display:flex; align-items:center; justify-content:center; padding:28px;}
-  .project-visual img{max-width:120px; max-height:120px; object-fit:contain;}
-  .project-body{padding:34px 36px;}
-  .project-body .tag{color:var(--accent); font-size:.8rem; margin-bottom:8px;}
-  .project-body h3{font-size:1.35rem; margin-bottom:10px;}
-  .project-body h3 span.sub{color:var(--text-dim); font-size:.85rem; font-weight:400; font-family:var(--font-body);}
-  .project-body p{color:var(--text-dim); font-size:.95rem; margin-bottom:16px; max-width:55ch;}
-  .chips{display:flex; flex-wrap:wrap; gap:8px;}
-  .chip{border:1px solid var(--line); color:var(--text-dim); font-size:.78rem; padding:4px 10px; border-radius:3px;}
-  .store-links{display:flex; gap:10px; margin-top:16px;}
-  .store-links a{display:inline-flex; align-items:center; gap:6px; font-size:.8rem; color:var(--text-dim); border:1px solid var(--line); padding:6px 12px; border-radius:20px; transition:.2s;}
-  .store-links a:hover{color:var(--accent); border-color:var(--accent);}
-  .store-links svg{width:13px; height:13px; fill:currentColor;}
-  @media (max-width:720px){ .project{grid-template-columns:1fr;} .project-visual{min-height:140px;} }
+  /* ---- skills ---- */
+  .skill-groups{display:grid; grid-template-columns:repeat(3,1fr); gap:20px;}
+  .skill-group{padding:22px;}
+  .skill-group h4{font-size:.78rem; color:var(--accent); margin-bottom:12px;}
+  @media (max-width:700px){ .skill-groups{grid-template-columns:1fr 1fr;} }
+  @media (max-width:420px){ .skill-groups{grid-template-columns:1fr;} }
 
-  .skill-groups{display:grid; grid-template-columns:repeat(3,1fr); gap:32px;}
-  .skill-group h4{font-size:.85rem; color:var(--text-dim); font-weight:500; margin-bottom:14px;}
-  .chips.tight .chip{margin:0 6px 6px 0;}
-  @media (max-width:720px){ .skill-groups{grid-template-columns:1fr 1fr;} }
-
-  footer{padding:90px 0 60px; border-top:1px solid var(--line);}
-  footer h2{font-size:clamp(1.8rem,4vw,2.6rem); max-width:14ch;}
-  .contact-links{margin-top:32px; display:flex; gap:28px; flex-wrap:wrap;}
-  .contact-links a{border-bottom:1px solid var(--line); padding-bottom:4px; font-size:1rem; transition:border-color .2s, color .2s;}
+  /* ---- footer ---- */
+  footer{padding:70px 0 48px; text-align:left;}
+  footer .glass{padding:48px 36px;}
+  footer h2{font-size:clamp(1.7rem,5vw,2.5rem); max-width:16ch;}
+  .contact-links{margin-top:28px; display:flex; gap:24px; flex-wrap:wrap;}
+  .contact-links a{border-bottom:1px solid var(--glass-b); padding-bottom:4px; font-size:1rem; transition:.2s;}
   .contact-links a:hover{border-color:var(--accent); color:var(--accent);}
-  .fineprint{margin-top:60px; color:var(--text-dim); font-size:.8rem;}
+  .fineprint{margin-top:40px; color:var(--ink-dim); font-size:.8rem;}
 
-  /* ---- motion ---- */
-  #progress{position:fixed; top:0; left:0; height:2px; width:0%; background:var(--accent); z-index:30; transition:width .1s linear;}
-
-  .reveal{opacity:0; transform:translateY(28px); transition:opacity .7s cubic-bezier(.2,.7,.2,1), transform .7s cubic-bezier(.2,.7,.2,1);}
+  .reveal{opacity:0; transform:translateY(24px); transition:opacity .6s cubic-bezier(.2,.7,.2,1), transform .6s cubic-bezier(.2,.7,.2,1);}
   .reveal.in{opacity:1; transform:translateY(0);}
-  .projects .reveal{transition-delay:calc(var(--i,0) * 70ms);}
-  .skill-groups .reveal{transition-delay:calc(var(--i,0) * 90ms);}
-
-  .hero-fade{opacity:0; transform:translateY(16px); animation:heroIn .8s cubic-bezier(.2,.7,.2,1) forwards;}
-  .hero-fade:nth-child(1){animation-delay:.05s;}
-  .hero-fade:nth-child(2){animation-delay:.18s;}
-  .hero-fade:nth-child(3){animation-delay:.32s;}
-  .hero-fade:nth-child(4){animation-delay:.44s;}
-  @keyframes heroIn{to{opacity:1; transform:translateY(0);}}
-
-  nav a{position:relative;}
-  nav a::after{content:''; position:absolute; left:0; bottom:-4px; width:0; height:1px; background:var(--accent); transition:width .25s ease;}
-  nav a:hover::after, nav a.active::after{width:100%;}
-  nav a.active{color:var(--text);}
-
-  .project{transition:transform .35s cubic-bezier(.2,.7,.2,1), border-color .35s, box-shadow .35s;}
-  .project:hover{transform:translateY(-5px); border-color:var(--accent); box-shadow:0 18px 40px -20px rgba(55,198,174,.25);}
-  .project-visual img{transition:transform .4s ease;}
-  .project:hover .project-visual img{transform:scale(1.06);}
-
-  .btn{transition:transform .2s ease, filter .2s ease, border-color .2s ease;}
-  .btn:hover{transform:translateY(-2px);}
-
-  .job{transition:padding-left .3s ease, border-color .3s ease;}
-  .job:hover{padding-left:12px; border-color:var(--accent);}
-
-  .about-grid img{transition:transform .5s ease;}
-  .about-grid img:hover{transform:scale(1.04) rotate(-1deg);}
-
-  @media (prefers-reduced-motion:reduce){
-    .reveal{opacity:1; transform:none; transition:none;}
-    .hero-fade{opacity:1; transform:none; animation:none;}
-    .project:hover, .job:hover, .about-grid img:hover{transform:none;}
-  }
+  .timeline .reveal{transition-delay:calc(var(--i,0) * 70ms);}
+  @media (prefers-reduced-motion:reduce){ .reveal{opacity:1; transform:none; transition:none;} }
 </style>
 </head>
 <body>
 
 <div id="progress"></div>
 
+<svg width="0" height="0" style="position:absolute">
+  <symbol id="ic-apple" viewBox="0 0 384 512"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141 4 184.8 4 273.5c0 25.9 4.7 52.7 14.2 80.3 12.7 36.7 58.4 126.8 106.1 125.3 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.1-.7 89.4-82.9 101.5-119.7-64.5-30.4-59.3-89.2-59.3-90.7zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></symbol>
+  <symbol id="ic-google" viewBox="0 0 512 512"><path d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z"/></symbol>
+</svg>
+
 <header>
   <div class="wrap">
-    <div class="logo">Anas Asim</div>
-    <nav id="nav">
+    <div class="logo">Anas<span>.</span>Asim</div>
+    <nav class="desktop-nav" id="nav">
       <a href="#work" data-nav="work">Work</a>
       <a href="#experience" data-nav="experience">Experience</a>
       <a href="#skills" data-nav="skills">Skills</a>
       <a href="#contact" data-nav="contact">Contact</a>
     </nav>
+    <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+  <div class="mobile-nav" id="mobileNav">
+    <a href="#work">Work</a><a href="#experience">Experience</a><a href="#skills">Skills</a><a href="#contact">Contact</a>
   </div>
 </header>
 
 <section class="hero">
-  <div class="wrap hero-grid">
-    <div>
-      <h1 class="hero-fade">Building the apps that move things — and people.</h1>
-      <p class="lede hero-fade">Senior Flutter developer with four years shipping delivery, ride-hailing and e-commerce apps for Arabic-speaking markets — from checkout flows to payment-gateway integrations.</p>
-      <div class="stats hero-fade">
-        <div class="stat"><b data-count="4" data-suffix="+">0</b><span>years experience</span></div>
-        <div class="stat"><b data-count="150" data-suffix="+">0</b><span>freelance projects delivered</span></div>
-        <div class="stat"><b data-count="15" data-suffix="+">0</b><span>live on app stores</span></div>
-      </div>
-      <div class="cta-row hero-fade">
-        <a class="btn primary" href="#work">See the work</a>
-        <a class="btn ghost" href="mailto:anasasim261@gmail.com">Get in touch</a>
-      </div>
+  <div class="bubbles" id="bubbles"></div>
+  <div class="wrap hero-inner">
+    <div class="kicker">Senior Flutter Developer · Cairo, Egypt</div>
+    <h1>Building mobile apps that <em>run deep</em> — delivery, payments, everyday life.</h1>
+    <p class="lede">Four years shipping ride-hailing, delivery and e-commerce apps for Arabic-speaking markets — from real-time tracking to payment-gateway integrations.</p>
+    <div class="cta-row">
+      <a class="btn primary" href="#work">See the work</a>
+      <a class="btn ghost" href="mailto:anasasim261@gmail.com">Get in touch</a>
     </div>
-    <div class="route-box hero-fade" style="animation-delay:.25s;">
-      <svg viewBox="0 0 320 260" fill="none">
-        <circle class="route-pin a" cx="46" cy="46" r="7" fill="#37c6ae"/>
-        <circle class="route-pin b" cx="270" cy="214" r="7" fill="#37c6ae"/>
-        <path class="route-path" d="M46 46 C 140 30, 40 140, 120 150 S 260 120, 270 214" stroke-linecap="round"/>
-      </svg>
+    <div class="stat-row">
+      <div class="stat"><b>4+</b><span>years experience</span></div>
+      <div class="stat"><b>150+</b><span>freelance projects</span></div>
+      <div class="stat"><b>15+</b><span>live on app stores</span></div>
     </div>
   </div>
 </section>
 
 <section id="about">
-  <div class="wrap about-grid reveal">
-    <img src="site-assets/photo.png" alt="Anas Asim">
-    <div>
-      <h2 style="font-size:1.6rem; margin-bottom:16px;">About</h2>
-      <p>I'm a Senior Flutter Developer based in Cairo, Egypt, with four years building cross-platform apps for Arabic-speaking markets — from ride-hailing and delivery platforms to e-commerce, real estate and business tools. I focus on clean architecture, scalable state management, and turning client requirements into fast, reliable production apps.</p>
+  <div class="wrap">
+    <div class="glass about-grid reveal">
+      <img src="site-assets/photo.png" alt="Anas Asim">
+      <div>
+        <div class="section-head" style="margin-bottom:12px;"><div class="eyebrow">About</div></div>
+        <p>I'm a Senior Flutter Developer based in Cairo, Egypt, with four years building cross-platform apps for Arabic-speaking markets — from ride-hailing and delivery platforms to e-commerce, real estate and business tools. I focus on clean architecture, scalable state management, and turning client requirements into fast, reliable production apps.</p>
+      </div>
     </div>
   </div>
 </section>
 
 <section id="work">
   <div class="wrap">
-    <div class="section-head reveal">
-      <h2>Selected work</h2>
-      <span class="count">9 of 15+ published apps</span>
-    </div>
-    <div class="projects">
+    <div class="section-head"><div class="eyebrow">Selected work</div><h2>9 of 15+ published apps</h2></div>
+    <div class="carousel-wrap">
+      <div class="work-carousel glass" id="carousel" style="background:transparent; border:none; backdrop-filter:none; padding:0;">
 
-      <div class="project reveal" style="--i:0;">
-        <div class="project-visual"><img src="site-assets/aabir.png" alt="AABIR logo"></div>
-        <div class="project-body">
-          <div class="tag">Ride-hailing</div>
-          <h3>AABIR — عابر <span class="sub">(rider app)</span></h3>
-          <p>Book rides and get around the city with a smooth, reliable rider experience — real-time streaming maps over WebSocket and a full notification system.</p>
-          <div class="chips"><span class="chip">Flutter</span><span class="chip">Bloc/Cubit</span><span class="chip">WebSocket</span><span class="chip">Firebase</span></div>
-          <div class="store-links">
-            <a href="https://apps.apple.com/qa/app/aabir-%D8%B9%D8%A7%D8%A8%D8%B1/id6476094429" target="_blank" rel="noopener"><svg viewBox="0 0 384 512"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141 4 184.8 4 273.5c0 25.9 4.7 52.7 14.2 80.3 12.7 36.7 58.4 126.8 106.1 125.3 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.1-.7 89.4-82.9 101.5-119.7-64.5-30.4-59.3-89.2-59.3-90.7zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>App Store</a>
-            <a href="https://play.google.com/store/apps/details?id=com.aaber.rider&hl=en" target="_blank" rel="noopener"><svg viewBox="0 0 512 512"><path d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z"/></svg>Google Play</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="project reveal" style="--i:1;">
-        <div class="project-visual"><img src="site-assets/aabir.png" alt="AABIR Captain logo"></div>
-        <div class="project-body">
-          <div class="tag">Ride-hailing — driver side</div>
-          <h3>Aabir Captain — عابر كابتن</h3>
-          <p>The driver-facing companion app for AABIR — accept nearby ride requests and run trips with the same real-time map and notification stack.</p>
+        <div class="project glass">
+          <div class="project-top"><img src="site-assets/aabir.png" alt="AABIR logo"><div><div class="tag">Ride-hailing</div><h3>AABIR<span class="sub">Rider app · عابر</span></h3></div></div>
+          <p>Real-time streaming maps over WebSocket and a full notification system for a smooth rider experience.</p>
           <div class="chips"><span class="chip">Flutter</span><span class="chip">Bloc/Cubit</span><span class="chip">WebSocket</span></div>
           <div class="store-links">
-            <a href="https://apps.apple.com/us/app/aabir-captain/id6476094701" target="_blank" rel="noopener"><svg viewBox="0 0 384 512"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141 4 184.8 4 273.5c0 25.9 4.7 52.7 14.2 80.3 12.7 36.7 58.4 126.8 106.1 125.3 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.1-.7 89.4-82.9 101.5-119.7-64.5-30.4-59.3-89.2-59.3-90.7zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>App Store</a>
-            <a href="https://play.google.com/store/apps/details?id=com.aaber.driver&hl=en" target="_blank" rel="noopener"><svg viewBox="0 0 512 512"><path d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z"/></svg>Google Play</a>
+            <a href="https://apps.apple.com/qa/app/aabir-%D8%B9%D8%A7%D8%A8%D8%B1/id6476094429" target="_blank" rel="noopener"><svg><use href="#ic-apple"/></svg>App Store</a>
+            <a href="https://play.google.com/store/apps/details?id=com.aaber.rider&hl=en" target="_blank" rel="noopener"><svg><use href="#ic-google"/></svg>Play</a>
           </div>
         </div>
-      </div>
 
-      <div class="project reveal" style="--i:2;">
-        <div class="project-visual"><img src="site-assets/zeem.png" alt="Zeem logo"></div>
-        <div class="project-body">
-          <div class="tag">Multi-service platform</div>
-          <h3>Zeem Customer — زيم <span class="sub">(9+ services)</span></h3>
-          <p>An Uber-like multi-service app covering water delivery, order delivery and passenger delivery in one platform, displaying all departments and products in a single interface.</p>
-          <div class="chips"><span class="chip">Flutter</span><span class="chip">Firebase</span><span class="chip">REST APIs</span></div>
+        <div class="project glass">
+          <div class="project-top"><img src="site-assets/aabir.png" alt="AABIR Captain logo"><div><div class="tag">Ride-hailing — driver</div><h3>Aabir Captain<span class="sub">عابر كابتن</span></h3></div></div>
+          <p>Driver-facing companion app — accept nearby ride requests and run trips on the same real-time stack.</p>
+          <div class="chips"><span class="chip">Flutter</span><span class="chip">Bloc/Cubit</span></div>
           <div class="store-links">
-            <a href="https://apps.apple.com/eg/app/%D8%B2%D9%8A%D9%85-zeem/id6443638059" target="_blank" rel="noopener"><svg viewBox="0 0 384 512"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141 4 184.8 4 273.5c0 25.9 4.7 52.7 14.2 80.3 12.7 36.7 58.4 126.8 106.1 125.3 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.1-.7 89.4-82.9 101.5-119.7-64.5-30.4-59.3-89.2-59.3-90.7zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>App Store</a>
-            <a href="https://play.google.com/store/apps/details?id=com.zeem.customer&hl=en" target="_blank" rel="noopener"><svg viewBox="0 0 512 512"><path d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z"/></svg>Google Play</a>
+            <a href="https://apps.apple.com/us/app/aabir-captain/id6476094701" target="_blank" rel="noopener"><svg><use href="#ic-apple"/></svg>App Store</a>
+            <a href="https://play.google.com/store/apps/details?id=com.aaber.driver&hl=en" target="_blank" rel="noopener"><svg><use href="#ic-google"/></svg>Play</a>
           </div>
         </div>
-      </div>
 
-      <div class="project reveal" style="--i:3;">
-        <div class="project-visual"><img src="site-assets/zeemDriver.png" alt="Zeem Driver logo"></div>
-        <div class="project-body">
-          <div class="tag">Driver companion app</div>
-          <h3>Zeem Driver</h3>
-          <p>The driver-side companion app — receive delivery requests from nearby customers and businesses and manage trips on your own schedule.</p>
-          <div class="chips"><span class="chip">Flutter</span><span class="chip">Real-time requests</span></div>
+        <div class="project glass">
+          <div class="project-top"><img src="site-assets/zeem.png" alt="Zeem logo"><div><div class="tag">Multi-service · 9+</div><h3>Zeem Customer<span class="sub">زيم</span></h3></div></div>
+          <p>Uber-like multi-service app covering water delivery, order delivery and passenger delivery in one platform.</p>
+          <div class="chips"><span class="chip">Flutter</span><span class="chip">Firebase</span></div>
           <div class="store-links">
-            <a href="https://apps.apple.com/eg/app/%D8%B3%D8%A7%D8%A6%D9%82-%D8%B2%D9%8A%D9%85-zeem-driver/id6443723481" target="_blank" rel="noopener"><svg viewBox="0 0 384 512"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141 4 184.8 4 273.5c0 25.9 4.7 52.7 14.2 80.3 12.7 36.7 58.4 126.8 106.1 125.3 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.1-.7 89.4-82.9 101.5-119.7-64.5-30.4-59.3-89.2-59.3-90.7zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>App Store</a>
-            <a href="https://play.google.com/store/apps/details?id=com.zeem.driver&hl=en" target="_blank" rel="noopener"><svg viewBox="0 0 512 512"><path d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z"/></svg>Google Play</a>
+            <a href="https://apps.apple.com/eg/app/%D8%B2%D9%8A%D9%85-zeem/id6443638059" target="_blank" rel="noopener"><svg><use href="#ic-apple"/></svg>App Store</a>
+            <a href="https://play.google.com/store/apps/details?id=com.zeem.customer&hl=en" target="_blank" rel="noopener"><svg><use href="#ic-google"/></svg>Play</a>
           </div>
         </div>
-      </div>
 
-      <div class="project reveal" style="--i:4;">
-        <div class="project-visual"><img src="site-assets/eyewater.png" alt="Al Ain Water logo"></div>
-        <div class="project-body">
-          <div class="tag">Utilities / logistics — Iraq</div>
-          <h3>Al Ain Water</h3>
-          <p>The main water distribution company across Iraq, covered by four linked apps — Admin, Driver, User and Store — coordinating orders, deliveries and stock in one system.</p>
-          <div class="chips"><span class="chip">Multi-app system</span><span class="chip">Order management</span></div>
+        <div class="project glass">
+          <div class="project-top"><img src="site-assets/zeemDriver.png" alt="Zeem Driver logo"><div><div class="tag">Driver companion</div><h3>Zeem Driver</h3></div></div>
+          <p>Receive delivery requests from nearby customers and businesses, manage trips on your own schedule.</p>
+          <div class="chips"><span class="chip">Flutter</span><span class="chip">Real-time</span></div>
           <div class="store-links">
-            <a href="https://apps.apple.com/us/app/%D8%A7%D9%84%D8%B9%D9%8A%D9%86-%D8%A7%D9%84%D8%B3%D8%AD%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D9%85%D9%8A%D8%A7%D9%87/id6477953615" target="_blank" rel="noopener"><svg viewBox="0 0 384 512"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141 4 184.8 4 273.5c0 25.9 4.7 52.7 14.2 80.3 12.7 36.7 58.4 126.8 106.1 125.3 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.1-.7 89.4-82.9 101.5-119.7-64.5-30.4-59.3-89.2-59.3-90.7zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>App Store</a>
-            <a href="https://play.google.com/store/apps/details?id=com.watereye.watereye&hl=af" target="_blank" rel="noopener"><svg viewBox="0 0 512 512"><path d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z"/></svg>Google Play</a>
+            <a href="https://apps.apple.com/eg/app/%D8%B3%D8%A7%D8%A6%D9%82-%D8%B2%D9%8A%D9%85-zeem-driver/id6443723481" target="_blank" rel="noopener"><svg><use href="#ic-apple"/></svg>App Store</a>
+            <a href="https://play.google.com/store/apps/details?id=com.zeem.driver&hl=en" target="_blank" rel="noopener"><svg><use href="#ic-google"/></svg>Play</a>
           </div>
         </div>
-      </div>
 
-      <div class="project reveal" style="--i:5;">
-        <div class="project-visual"><img src="site-assets/story.png" alt="StoryLingo logo"></div>
-        <div class="project-body">
-          <div class="tag">Education</div>
-          <h3>StoryLingo</h3>
-          <p>An English-learning app teaching through reading and listening to translated stories, built with a focus on accessibility and engagement — showing range beyond logistics apps.</p>
-          <div class="chips"><span class="chip">Flutter</span><span class="chip">Bloc/Cubit</span><span class="chip">Firebase</span></div>
+        <div class="project glass">
+          <div class="project-top"><img src="site-assets/eyewater.png" alt="Al Ain Water logo"><div><div class="tag">Utilities — Iraq</div><h3>Al Ain Water</h3></div></div>
+          <p>Main water distribution company across Iraq, covered by four linked apps — Admin, Driver, User and Store.</p>
+          <div class="chips"><span class="chip">Multi-app</span><span class="chip">Orders</span></div>
           <div class="store-links">
-            <a href="https://apps.apple.com/us/app/%D8%B3%D8%AA%D9%88%D8%B1%D9%8A%D9%84%D9%8A%D9%86%D8%AC%D9%88-%D8%AA%D8%B9%D9%84%D9%85-%D8%A7%D9%84%D8%A7%D9%86%D8%AC%D9%84%D9%8A%D8%B2%D9%8A%D8%A9/id6751780506" target="_blank" rel="noopener"><svg viewBox="0 0 384 512"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141 4 184.8 4 273.5c0 25.9 4.7 52.7 14.2 80.3 12.7 36.7 58.4 126.8 106.1 125.3 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.1-.7 89.4-82.9 101.5-119.7-64.5-30.4-59.3-89.2-59.3-90.7zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>App Store</a>
-            <a href="https://play.google.com/store/apps/details?id=com.storyLingo.storyLingo" target="_blank" rel="noopener"><svg viewBox="0 0 512 512"><path d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z"/></svg>Google Play</a>
+            <a href="https://apps.apple.com/us/app/%D8%A7%D9%84%D8%B9%D9%8A%D9%86-%D8%A7%D9%84%D8%B3%D8%AD%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D9%85%D9%8A%D8%A7%D9%87/id6477953615" target="_blank" rel="noopener"><svg><use href="#ic-apple"/></svg>App Store</a>
+            <a href="https://play.google.com/store/apps/details?id=com.watereye.watereye&hl=af" target="_blank" rel="noopener"><svg><use href="#ic-google"/></svg>Play</a>
           </div>
         </div>
-      </div>
 
-      <div class="project reveal" style="--i:6;">
-        <div class="project-visual"><img src="site-assets/egytour.png" alt="Egy Tour logo"></div>
-        <div class="project-body">
-          <div class="tag">Travel &amp; tourism</div>
-          <h3>Egy Tour</h3>
-          <p>A cross-platform tourism app showcasing Egypt's top destinations — detailed info, images and interactive maps of historical sites and museums, with offline support.</p>
-          <div class="chips"><span class="chip">Flutter</span><span class="chip">Offline support</span><span class="chip">Maps</span></div>
+        <div class="project glass">
+          <div class="project-top"><img src="site-assets/story.png" alt="StoryLingo logo"><div><div class="tag">Education</div><h3>StoryLingo</h3></div></div>
+          <p>English-learning app teaching through reading and listening to translated stories.</p>
+          <div class="chips"><span class="chip">Flutter</span><span class="chip">Firebase</span></div>
           <div class="store-links">
-            <a href="https://apps.apple.com/sa/app/egy-tour/id6737623064?l=ar" target="_blank" rel="noopener"><svg viewBox="0 0 384 512"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141 4 184.8 4 273.5c0 25.9 4.7 52.7 14.2 80.3 12.7 36.7 58.4 126.8 106.1 125.3 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.1-.7 89.4-82.9 101.5-119.7-64.5-30.4-59.3-89.2-59.3-90.7zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>App Store</a>
-            <a href="https://play.google.com/store/apps/details?id=com.skycrow.egyTour" target="_blank" rel="noopener"><svg viewBox="0 0 512 512"><path d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z"/></svg>Google Play</a>
+            <a href="https://apps.apple.com/us/app/%D8%B3%D8%AA%D9%88%D8%B1%D9%8A%D9%84%D9%8A%D9%86%D8%AC%D9%88-%D8%AA%D8%B9%D9%84%D9%85-%D8%A7%D9%84%D8%A7%D9%86%D8%AC%D9%84%D9%8A%D8%B2%D9%8A%D8%A9/id6751780506" target="_blank" rel="noopener"><svg><use href="#ic-apple"/></svg>App Store</a>
+            <a href="https://play.google.com/store/apps/details?id=com.storyLingo.storyLingo" target="_blank" rel="noopener"><svg><use href="#ic-google"/></svg>Play</a>
           </div>
         </div>
-      </div>
 
-      <div class="project reveal" style="--i:7;">
-        <div class="project-visual"><img src="site-assets/alhamidia.png" alt="Al Humaidia logo"></div>
-        <div class="project-body">
-          <div class="tag">Real estate</div>
-          <h3>مجمع الحميدية السكني</h3>
-          <p>A residential-community app giving homeowners easy access to services, privacy and independence within a family-focused housing compound.</p>
-          <div class="chips"><span class="chip">Flutter</span><span class="chip">Arabic RTL</span></div>
+        <div class="project glass">
+          <div class="project-top"><img src="site-assets/egytour.png" alt="Egy Tour logo"><div><div class="tag">Travel &amp; tourism</div><h3>Egy Tour</h3></div></div>
+          <p>Tourism app showcasing Egypt's top destinations with interactive maps and offline support.</p>
+          <div class="chips"><span class="chip">Flutter</span><span class="chip">Offline</span></div>
           <div class="store-links">
-            <a href="https://apps.apple.com/pl/app/%D9%85%D8%AC%D9%85%D8%B9-%D8%A7%D9%84%D8%AD%D9%85%D9%8A%D8%AF%D9%8A%D8%A9-%D8%A7%D9%84%D8%B3%D9%83%D9%86%D9%8A/id6758357146" target="_blank" rel="noopener"><svg viewBox="0 0 384 512"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141 4 184.8 4 273.5c0 25.9 4.7 52.7 14.2 80.3 12.7 36.7 58.4 126.8 106.1 125.3 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.1-.7 89.4-82.9 101.5-119.7-64.5-30.4-59.3-89.2-59.3-90.7zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>App Store</a>
-            <a href="https://play.google.com/store/apps/details?id=com.alhamidiya" target="_blank" rel="noopener"><svg viewBox="0 0 512 512"><path d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z"/></svg>Google Play</a>
+            <a href="https://apps.apple.com/sa/app/egy-tour/id6737623064?l=ar" target="_blank" rel="noopener"><svg><use href="#ic-apple"/></svg>App Store</a>
+            <a href="https://play.google.com/store/apps/details?id=com.skycrow.egyTour" target="_blank" rel="noopener"><svg><use href="#ic-google"/></svg>Play</a>
           </div>
         </div>
-      </div>
 
-      <div class="project reveal" style="--i:8;">
-        <div class="project-visual"><img src="site-assets/foryou.png" alt="For You logo"></div>
-        <div class="project-body">
-          <div class="tag">Beauty / salon management</div>
-          <h3>For You — فوريو</h3>
-          <p>A comprehensive salon and laser-session management app for streamlining bookings and daily operations — a business tool for salon owners and practitioners.</p>
-          <div class="chips"><span class="chip">Flutter</span><span class="chip">Booking system</span></div>
+        <div class="project glass">
+          <div class="project-top"><img src="site-assets/alhamidia.png" alt="Al Humaidia logo"><div><div class="tag">Real estate</div><h3 style="direction:rtl; text-align:right;">مجمع الحميدية</h3></div></div>
+          <p>Residential-community app giving homeowners access to services and privacy within a housing compound.</p>
+          <div class="chips"><span class="chip">Flutter</span><span class="chip">RTL</span></div>
           <div class="store-links">
-            <a href="https://apps.apple.com/us/app/for-you-%D9%81%D9%88%D8%B1%D9%8A%D9%88/id6761684938" target="_blank" rel="noopener"><svg viewBox="0 0 384 512"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141 4 184.8 4 273.5c0 25.9 4.7 52.7 14.2 80.3 12.7 36.7 58.4 126.8 106.1 125.3 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.1-.7 89.4-82.9 101.5-119.7-64.5-30.4-59.3-89.2-59.3-90.7zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>App Store</a>
-            <a href="https://play.google.com/store/apps/details?id=com.foryou2026.app" target="_blank" rel="noopener"><svg viewBox="0 0 512 512"><path d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z"/></svg>Google Play</a>
+            <a href="https://apps.apple.com/pl/app/%D9%85%D8%AC%D9%85%D8%B9-%D8%A7%D9%84%D8%AD%D9%85%D9%8A%D8%AF%D9%8A%D8%A9-%D8%A7%D9%84%D8%B3%D9%83%D9%86%D9%8A/id6758357146" target="_blank" rel="noopener"><svg><use href="#ic-apple"/></svg>App Store</a>
+            <a href="https://play.google.com/store/apps/details?id=com.alhamidiya" target="_blank" rel="noopener"><svg><use href="#ic-google"/></svg>Play</a>
           </div>
         </div>
-      </div>
 
+        <div class="project glass">
+          <div class="project-top"><img src="site-assets/foryou.png" alt="For You logo"><div><div class="tag">Beauty / salon</div><h3>For You<span class="sub">فوريو</span></h3></div></div>
+          <p>Comprehensive salon and laser-session management app for streamlining bookings and daily operations.</p>
+          <div class="chips"><span class="chip">Flutter</span><span class="chip">Bookings</span></div>
+          <div class="store-links">
+            <a href="https://apps.apple.com/us/app/for-you-%D9%81%D9%88%D8%B1%D9%8A%D9%88/id6761684938" target="_blank" rel="noopener"><svg><use href="#ic-apple"/></svg>App Store</a>
+            <a href="https://play.google.com/store/apps/details?id=com.foryou2026.app" target="_blank" rel="noopener"><svg><use href="#ic-google"/></svg>Play</a>
+          </div>
+        </div>
+
+      </div>
+      <div class="carousel-nav">
+        <button id="prevBtn" aria-label="Previous">‹</button>
+        <button id="nextBtn" aria-label="Next">›</button>
+      </div>
     </div>
-    <p style="color:var(--text-dim); font-size:.85rem; margin-top:24px;">Plus 150+ freelance builds since 2021 across e-commerce, delivery and business tools.</p>
+    <p style="color:var(--ink-dim); font-size:.82rem; margin-top:4px;">+ 150 freelance builds since 2021 across e-commerce, delivery and business tools.</p>
   </div>
 </section>
 
 <section id="experience">
   <div class="wrap">
-    <div class="section-head reveal"><h2>Experience</h2></div>
-
-    <div class="job reveal" style="--i:0;">
-      <div class="when">2025 — Present</div>
-      <div>
+    <div class="section-head"><div class="eyebrow">Career</div><h2>Experience</h2></div>
+    <div class="timeline">
+      <div class="job reveal" style="--i:0;">
         <h3>Advanced Solutions for Transportation Services</h3>
-        <div class="role">Senior Flutter Developer · Remote, Egypt</div>
+        <div class="when">Senior Flutter Developer · Remote, Egypt · 2025—Present</div>
         <p>Working on Zeem Customer &amp; Driver apps — an Uber-like platform with 9+ services — focused on bug fixing, performance optimization and a stable production-ready release.</p>
       </div>
-    </div>
-
-    <div class="job reveal" style="--i:1;">
-      <div class="when">2024 — 2025</div>
-      <div>
+      <div class="job reveal" style="--i:1;">
         <h3>RFID Saudi</h3>
-        <div class="role">Senior Flutter Developer · Dammam, Saudi Arabia</div>
-        <p>Led development of an appointment-booking app, improving user engagement by 30% and reducing app load times by 40% through advanced state management. Collaborated with design and QA for seamless UI/UX.</p>
+        <div class="when">Senior Flutter Developer · Dammam, Saudi Arabia · 2024—2025</div>
+        <p>Led development of an appointment-booking app, improving user engagement by 30% and reducing app load times by 40%.</p>
       </div>
-    </div>
-
-    <div class="job reveal" style="--i:2;">
-      <div class="when">2024 — 2024</div>
-      <div>
+      <div class="job reveal" style="--i:2;">
         <h3>SkyCrew</h3>
-        <div class="role">Senior Flutter Developer · Remote, Egypt</div>
-        <p>Developed and maintained a tourism app, increasing user retention by 25%. Integrated third-party APIs for real-time updates and mentored junior developers on Flutter best practices.</p>
+        <div class="when">Senior Flutter Developer · Remote, Egypt · 2024</div>
+        <p>Developed and maintained a tourism app, increasing user retention by 25%. Mentored junior developers.</p>
       </div>
-    </div>
-
-    <div class="job reveal" style="--i:3;">
-      <div class="when">2021 — Present</div>
-      <div>
+      <div class="job reveal" style="--i:3;">
         <h3>Independent Freelance</h3>
-        <div class="role">Flutter Developer · Remote</div>
-        <p>Delivered 150+ cross-platform apps for clients, integrating Firebase, authentication, push notifications and local storage — 15+ published to production app stores.</p>
+        <div class="when">Flutter Developer · Remote · 2021—Present</div>
+        <p>Delivered 150+ cross-platform apps for clients — 15+ published to production app stores.</p>
       </div>
     </div>
-
   </div>
 </section>
 
 <section id="skills">
   <div class="wrap">
-    <div class="section-head reveal"><h2>Skills</h2></div>
+    <div class="section-head"><div class="eyebrow">Toolkit</div><h2>Skills</h2></div>
     <div class="skill-groups">
-      <div class="skill-group reveal" style="--i:0;">
-        <h4>Core</h4>
-        <div class="chips tight">
-          <span class="chip">Flutter</span><span class="chip">Dart</span><span class="chip">Clean Architecture</span><span class="chip">Responsive UI</span>
-        </div>
-      </div>
-      <div class="skill-group reveal" style="--i:1;">
-        <h4>State &amp; data</h4>
-        <div class="chips tight">
-          <span class="chip">Bloc</span><span class="chip">Cubit</span><span class="chip">Provider</span><span class="chip">GetX</span>
-        </div>
-      </div>
-      <div class="skill-group reveal" style="--i:2;">
-        <h4>Platform &amp; ops</h4>
-        <div class="chips tight">
-          <span class="chip">Firebase</span><span class="chip">REST APIs</span><span class="chip">CI/CD</span><span class="chip">WebSocket</span>
-        </div>
-      </div>
+      <div class="skill-group glass"><h4>Core</h4><div class="chips"><span class="chip">Flutter</span><span class="chip">Dart</span><span class="chip">Clean Architecture</span></div></div>
+      <div class="skill-group glass"><h4>State &amp; data</h4><div class="chips"><span class="chip">Bloc</span><span class="chip">Cubit</span><span class="chip">Provider</span><span class="chip">GetX</span></div></div>
+      <div class="skill-group glass"><h4>Platform</h4><div class="chips"><span class="chip">Firebase</span><span class="chip">REST APIs</span><span class="chip">CI/CD</span><span class="chip">WebSocket</span></div></div>
     </div>
   </div>
 </section>
 
 <footer id="contact">
   <div class="wrap">
-    <h2>Have a build in mind? Let's talk.</h2>
-    <div class="contact-links">
-      <a href="mailto:anasasim261@gmail.com">anasasim261@gmail.com</a>
-      <a href="tel:+201118455252">+20 111 845 5252</a>
-      <a href="https://github.com/anasassem" target="_blank" rel="noopener">GitHub</a>
-      <a href="https://linkedin.com/in/anas-asim-7114421ba" target="_blank" rel="noopener">LinkedIn</a>
+    <div class="glass">
+      <h2>Have a build in mind? Let's talk.</h2>
+      <div class="contact-links">
+        <a href="mailto:anasasim261@gmail.com">anasasim261@gmail.com</a>
+        <a href="tel:+201118455252">+20 111 845 5252</a>
+        <a href="https://github.com/anasassem" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://linkedin.com/in/anas-asim-7114421ba" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+      <p class="fineprint">Cairo, Egypt · Available for remote roles &amp; freelance work</p>
     </div>
-    <p class="fineprint">Cairo, Egypt · Available for remote roles &amp; freelance work</p>
   </div>
 </footer>
 
@@ -419,61 +357,57 @@
 (function(){
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // scroll progress bar
   var bar = document.getElementById('progress');
   function updateProgress(){
     var h = document.documentElement;
-    var scrolled = h.scrollTop || document.body.scrollTop;
     var height = h.scrollHeight - h.clientHeight;
-    bar.style.width = (height > 0 ? (scrolled / height) * 100 : 0) + '%';
+    bar.style.width = (height > 0 ? (h.scrollTop / height) * 100 : 0) + '%';
   }
   document.addEventListener('scroll', updateProgress, {passive:true});
   updateProgress();
 
-  // reveal-on-scroll
-  var revealEls = document.querySelectorAll('.reveal');
-  if(reduce){
-    revealEls.forEach(function(el){ el.classList.add('in'); });
-  } else if('IntersectionObserver' in window){
-    var io = new IntersectionObserver(function(entries){
-      entries.forEach(function(entry){
-        if(entry.isIntersecting){
-          entry.target.classList.add('in');
-          io.unobserve(entry.target);
-        }
-      });
-    }, {threshold:.15, rootMargin:'0px 0px -40px 0px'});
-    revealEls.forEach(function(el){ io.observe(el); });
-  } else {
-    revealEls.forEach(function(el){ el.classList.add('in'); });
+  if(!reduce){
+    var host = document.getElementById('bubbles');
+    for(var i=0;i<9;i++){
+      var b = document.createElement('div');
+      var size = 14 + Math.random()*34;
+      b.className='bubble';
+      b.style.width=size+'px'; b.style.height=size+'px';
+      b.style.left = (Math.random()*100)+'%';
+      b.style.animationDuration = (9+Math.random()*10)+'s';
+      b.style.animationDelay = (Math.random()*10)+'s';
+      host.appendChild(b);
+    }
   }
 
-  // animated stat counters (run once, on hero load)
-  document.querySelectorAll('.stat b[data-count]').forEach(function(el){
-    var target = parseInt(el.getAttribute('data-count'), 10);
-    var suffix = el.getAttribute('data-suffix') || '';
-    if(reduce){ el.textContent = target + suffix; return; }
-    var start = null, duration = 1100;
-    function step(ts){
-      if(!start) start = ts;
-      var progress = Math.min((ts - start) / duration, 1);
-      var eased = 1 - Math.pow(1 - progress, 3);
-      el.textContent = Math.round(eased * target) + suffix;
-      if(progress < 1) requestAnimationFrame(step);
-    }
-    requestAnimationFrame(step);
+  var revealEls = document.querySelectorAll('.reveal');
+  if(reduce || !('IntersectionObserver' in window)){
+    revealEls.forEach(function(el){ el.classList.add('in'); });
+  } else {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){ if(entry.isIntersecting){ entry.target.classList.add('in'); io.unobserve(entry.target); } });
+    }, {threshold:.12, rootMargin:'0px 0px -30px 0px'});
+    revealEls.forEach(function(el){ io.observe(el); });
+  }
+
+  var burger = document.getElementById('burger');
+  var mobileNav = document.getElementById('mobileNav');
+  burger.addEventListener('click', function(){ burger.classList.toggle('open'); mobileNav.classList.toggle('open'); });
+  mobileNav.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', function(){ burger.classList.remove('open'); mobileNav.classList.remove('open'); });
   });
 
-  // active nav link on scroll
+  var carousel = document.getElementById('carousel');
+  document.getElementById('prevBtn').addEventListener('click', function(){ carousel.scrollBy({left:-300, behavior:'smooth'}); });
+  document.getElementById('nextBtn').addEventListener('click', function(){ carousel.scrollBy({left:300, behavior:'smooth'}); });
+
   var sections = ['work','experience','skills','contact'].map(function(id){ return document.getElementById(id); }).filter(Boolean);
   var navLinks = document.querySelectorAll('#nav a[data-nav]');
   function updateActiveNav(){
     var pos = window.scrollY + window.innerHeight * 0.3;
     var current = null;
     sections.forEach(function(sec){ if(sec.offsetTop <= pos) current = sec.id; });
-    navLinks.forEach(function(link){
-      link.classList.toggle('active', link.getAttribute('data-nav') === current);
-    });
+    navLinks.forEach(function(link){ link.classList.toggle('active', link.getAttribute('data-nav') === current); });
   }
   document.addEventListener('scroll', updateActiveNav, {passive:true});
   updateActiveNav();
