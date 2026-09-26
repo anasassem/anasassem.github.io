@@ -84,6 +84,10 @@
   .project-body p{color:var(--text-dim); font-size:.95rem; margin-bottom:16px; max-width:55ch;}
   .chips{display:flex; flex-wrap:wrap; gap:8px;}
   .chip{border:1px solid var(--line); color:var(--text-dim); font-size:.78rem; padding:4px 10px; border-radius:3px;}
+  .store-links{display:flex; gap:10px; margin-top:16px;}
+  .store-links a{display:inline-flex; align-items:center; gap:6px; font-size:.8rem; color:var(--text-dim); border:1px solid var(--line); padding:6px 12px; border-radius:20px; transition:.2s;}
+  .store-links a:hover{color:var(--accent); border-color:var(--accent);}
+  .store-links svg{width:13px; height:13px; fill:currentColor;}
   @media (max-width:720px){ .project{grid-template-columns:1fr;} .project-visual{min-height:140px;} }
 
   .skill-groups{display:grid; grid-template-columns:repeat(3,1fr); gap:32px;}
@@ -194,87 +198,133 @@
   <div class="wrap">
     <div class="section-head reveal">
       <h2>Selected work</h2>
-      <span class="count">8 of 15+ published apps</span>
+      <span class="count">9 of 15+ published apps</span>
     </div>
     <div class="projects">
 
       <div class="project reveal" style="--i:0;">
         <div class="project-visual"><img src="site-assets/aabir.png" alt="AABIR logo"></div>
         <div class="project-body">
-          <div class="tag">Delivery platform</div>
-          <h3>AABIR — عابر <span class="sub">(driver + customer)</span></h3>
-          <p>Delivery app with two interfaces — driver and customer — featuring real-time streaming maps over WebSocket and a full notification system.</p>
+          <div class="tag">Ride-hailing</div>
+          <h3>AABIR — عابر <span class="sub">(rider app)</span></h3>
+          <p>Book rides and get around the city with a smooth, reliable rider experience — real-time streaming maps over WebSocket and a full notification system.</p>
           <div class="chips"><span class="chip">Flutter</span><span class="chip">Bloc/Cubit</span><span class="chip">WebSocket</span><span class="chip">Firebase</span></div>
+          <div class="store-links">
+            <a href="https://apps.apple.com/qa/app/aabir-%D8%B9%D8%A7%D8%A8%D8%B1/id6476094429" target="_blank" rel="noopener"><svg viewBox="0 0 384 512"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141 4 184.8 4 273.5c0 25.9 4.7 52.7 14.2 80.3 12.7 36.7 58.4 126.8 106.1 125.3 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.1-.7 89.4-82.9 101.5-119.7-64.5-30.4-59.3-89.2-59.3-90.7zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>App Store</a>
+            <a href="https://play.google.com/store/apps/details?id=com.aaber.rider&hl=en" target="_blank" rel="noopener"><svg viewBox="0 0 512 512"><path d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z"/></svg>Google Play</a>
+          </div>
         </div>
       </div>
 
       <div class="project reveal" style="--i:1;">
+        <div class="project-visual"><img src="site-assets/aabir.png" alt="AABIR Captain logo"></div>
+        <div class="project-body">
+          <div class="tag">Ride-hailing — driver side</div>
+          <h3>Aabir Captain — عابر كابتن</h3>
+          <p>The driver-facing companion app for AABIR — accept nearby ride requests and run trips with the same real-time map and notification stack.</p>
+          <div class="chips"><span class="chip">Flutter</span><span class="chip">Bloc/Cubit</span><span class="chip">WebSocket</span></div>
+          <div class="store-links">
+            <a href="https://apps.apple.com/us/app/aabir-captain/id6476094701" target="_blank" rel="noopener"><svg viewBox="0 0 384 512"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141 4 184.8 4 273.5c0 25.9 4.7 52.7 14.2 80.3 12.7 36.7 58.4 126.8 106.1 125.3 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.1-.7 89.4-82.9 101.5-119.7-64.5-30.4-59.3-89.2-59.3-90.7zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>App Store</a>
+            <a href="https://play.google.com/store/apps/details?id=com.aaber.driver&hl=en" target="_blank" rel="noopener"><svg viewBox="0 0 512 512"><path d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z"/></svg>Google Play</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project reveal" style="--i:2;">
         <div class="project-visual"><img src="site-assets/zeem.png" alt="Zeem logo"></div>
         <div class="project-body">
           <div class="tag">Multi-service platform</div>
           <h3>Zeem Customer — زيم <span class="sub">(9+ services)</span></h3>
           <p>An Uber-like multi-service app covering water delivery, order delivery and passenger delivery in one platform, displaying all departments and products in a single interface.</p>
           <div class="chips"><span class="chip">Flutter</span><span class="chip">Firebase</span><span class="chip">REST APIs</span></div>
+          <div class="store-links">
+            <a href="https://apps.apple.com/eg/app/%D8%B2%D9%8A%D9%85-zeem/id6443638059" target="_blank" rel="noopener"><svg viewBox="0 0 384 512"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141 4 184.8 4 273.5c0 25.9 4.7 52.7 14.2 80.3 12.7 36.7 58.4 126.8 106.1 125.3 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.1-.7 89.4-82.9 101.5-119.7-64.5-30.4-59.3-89.2-59.3-90.7zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>App Store</a>
+            <a href="https://play.google.com/store/apps/details?id=com.zeem.customer&hl=en" target="_blank" rel="noopener"><svg viewBox="0 0 512 512"><path d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z"/></svg>Google Play</a>
+          </div>
         </div>
       </div>
 
-      <div class="project reveal" style="--i:2;">
+      <div class="project reveal" style="--i:3;">
         <div class="project-visual"><img src="site-assets/zeemDriver.png" alt="Zeem Driver logo"></div>
         <div class="project-body">
           <div class="tag">Driver companion app</div>
           <h3>Zeem Driver</h3>
           <p>The driver-side companion app — receive delivery requests from nearby customers and businesses and manage trips on your own schedule.</p>
           <div class="chips"><span class="chip">Flutter</span><span class="chip">Real-time requests</span></div>
+          <div class="store-links">
+            <a href="https://apps.apple.com/eg/app/%D8%B3%D8%A7%D8%A6%D9%82-%D8%B2%D9%8A%D9%85-zeem-driver/id6443723481" target="_blank" rel="noopener"><svg viewBox="0 0 384 512"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141 4 184.8 4 273.5c0 25.9 4.7 52.7 14.2 80.3 12.7 36.7 58.4 126.8 106.1 125.3 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.1-.7 89.4-82.9 101.5-119.7-64.5-30.4-59.3-89.2-59.3-90.7zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>App Store</a>
+            <a href="https://play.google.com/store/apps/details?id=com.zeem.driver&hl=en" target="_blank" rel="noopener"><svg viewBox="0 0 512 512"><path d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z"/></svg>Google Play</a>
+          </div>
         </div>
       </div>
 
-      <div class="project reveal" style="--i:3;">
+      <div class="project reveal" style="--i:4;">
         <div class="project-visual"><img src="site-assets/eyewater.png" alt="Al Ain Water logo"></div>
         <div class="project-body">
           <div class="tag">Utilities / logistics — Iraq</div>
           <h3>Al Ain Water</h3>
           <p>The main water distribution company across Iraq, covered by four linked apps — Admin, Driver, User and Store — coordinating orders, deliveries and stock in one system.</p>
           <div class="chips"><span class="chip">Multi-app system</span><span class="chip">Order management</span></div>
+          <div class="store-links">
+            <a href="https://apps.apple.com/us/app/%D8%A7%D9%84%D8%B9%D9%8A%D9%86-%D8%A7%D9%84%D8%B3%D8%AD%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D9%85%D9%8A%D8%A7%D9%87/id6477953615" target="_blank" rel="noopener"><svg viewBox="0 0 384 512"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141 4 184.8 4 273.5c0 25.9 4.7 52.7 14.2 80.3 12.7 36.7 58.4 126.8 106.1 125.3 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.1-.7 89.4-82.9 101.5-119.7-64.5-30.4-59.3-89.2-59.3-90.7zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>App Store</a>
+            <a href="https://play.google.com/store/apps/details?id=com.watereye.watereye&hl=af" target="_blank" rel="noopener"><svg viewBox="0 0 512 512"><path d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z"/></svg>Google Play</a>
+          </div>
         </div>
       </div>
 
-      <div class="project reveal" style="--i:4;">
+      <div class="project reveal" style="--i:5;">
         <div class="project-visual"><img src="site-assets/story.png" alt="StoryLingo logo"></div>
         <div class="project-body">
           <div class="tag">Education</div>
           <h3>StoryLingo</h3>
           <p>An English-learning app teaching through reading and listening to translated stories, built with a focus on accessibility and engagement — showing range beyond logistics apps.</p>
           <div class="chips"><span class="chip">Flutter</span><span class="chip">Bloc/Cubit</span><span class="chip">Firebase</span></div>
+          <div class="store-links">
+            <a href="https://apps.apple.com/us/app/%D8%B3%D8%AA%D9%88%D8%B1%D9%8A%D9%84%D9%8A%D9%86%D8%AC%D9%88-%D8%AA%D8%B9%D9%84%D9%85-%D8%A7%D9%84%D8%A7%D9%86%D8%AC%D9%84%D9%8A%D8%B2%D9%8A%D8%A9/id6751780506" target="_blank" rel="noopener"><svg viewBox="0 0 384 512"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141 4 184.8 4 273.5c0 25.9 4.7 52.7 14.2 80.3 12.7 36.7 58.4 126.8 106.1 125.3 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.1-.7 89.4-82.9 101.5-119.7-64.5-30.4-59.3-89.2-59.3-90.7zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>App Store</a>
+            <a href="https://play.google.com/store/apps/details?id=com.storyLingo.storyLingo" target="_blank" rel="noopener"><svg viewBox="0 0 512 512"><path d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z"/></svg>Google Play</a>
+          </div>
         </div>
       </div>
 
-      <div class="project reveal" style="--i:5;">
+      <div class="project reveal" style="--i:6;">
         <div class="project-visual"><img src="site-assets/egytour.png" alt="Egy Tour logo"></div>
         <div class="project-body">
           <div class="tag">Travel &amp; tourism</div>
           <h3>Egy Tour</h3>
           <p>A cross-platform tourism app showcasing Egypt's top destinations — detailed info, images and interactive maps of historical sites and museums, with offline support.</p>
           <div class="chips"><span class="chip">Flutter</span><span class="chip">Offline support</span><span class="chip">Maps</span></div>
+          <div class="store-links">
+            <a href="https://apps.apple.com/sa/app/egy-tour/id6737623064?l=ar" target="_blank" rel="noopener"><svg viewBox="0 0 384 512"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141 4 184.8 4 273.5c0 25.9 4.7 52.7 14.2 80.3 12.7 36.7 58.4 126.8 106.1 125.3 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.1-.7 89.4-82.9 101.5-119.7-64.5-30.4-59.3-89.2-59.3-90.7zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>App Store</a>
+            <a href="https://play.google.com/store/apps/details?id=com.skycrow.egyTour" target="_blank" rel="noopener"><svg viewBox="0 0 512 512"><path d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z"/></svg>Google Play</a>
+          </div>
         </div>
       </div>
 
-      <div class="project reveal" style="--i:6;">
+      <div class="project reveal" style="--i:7;">
         <div class="project-visual"><img src="site-assets/alhamidia.png" alt="Al Humaidia logo"></div>
         <div class="project-body">
           <div class="tag">Real estate</div>
           <h3>مجمع الحميدية السكني</h3>
           <p>A residential-community app giving homeowners easy access to services, privacy and independence within a family-focused housing compound.</p>
           <div class="chips"><span class="chip">Flutter</span><span class="chip">Arabic RTL</span></div>
+          <div class="store-links">
+            <a href="https://apps.apple.com/pl/app/%D9%85%D8%AC%D9%85%D8%B9-%D8%A7%D9%84%D8%AD%D9%85%D9%8A%D8%AF%D9%8A%D8%A9-%D8%A7%D9%84%D8%B3%D9%83%D9%86%D9%8A/id6758357146" target="_blank" rel="noopener"><svg viewBox="0 0 384 512"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141 4 184.8 4 273.5c0 25.9 4.7 52.7 14.2 80.3 12.7 36.7 58.4 126.8 106.1 125.3 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.1-.7 89.4-82.9 101.5-119.7-64.5-30.4-59.3-89.2-59.3-90.7zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>App Store</a>
+            <a href="https://play.google.com/store/apps/details?id=com.alhamidiya" target="_blank" rel="noopener"><svg viewBox="0 0 512 512"><path d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z"/></svg>Google Play</a>
+          </div>
         </div>
       </div>
 
-      <div class="project reveal" style="--i:7;">
+      <div class="project reveal" style="--i:8;">
         <div class="project-visual"><img src="site-assets/foryou.png" alt="For You logo"></div>
         <div class="project-body">
           <div class="tag">Beauty / salon management</div>
           <h3>For You — فوريو</h3>
           <p>A comprehensive salon and laser-session management app for streamlining bookings and daily operations — a business tool for salon owners and practitioners.</p>
           <div class="chips"><span class="chip">Flutter</span><span class="chip">Booking system</span></div>
+          <div class="store-links">
+            <a href="https://apps.apple.com/us/app/for-you-%D9%81%D9%88%D8%B1%D9%8A%D9%88/id6761684938" target="_blank" rel="noopener"><svg viewBox="0 0 384 512"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141 4 184.8 4 273.5c0 25.9 4.7 52.7 14.2 80.3 12.7 36.7 58.4 126.8 106.1 125.3 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.1-.7 89.4-82.9 101.5-119.7-64.5-30.4-59.3-89.2-59.3-90.7zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>App Store</a>
+            <a href="https://play.google.com/store/apps/details?id=com.foryou2026.app" target="_blank" rel="noopener"><svg viewBox="0 0 512 512"><path d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z"/></svg>Google Play</a>
+          </div>
         </div>
       </div>
 
