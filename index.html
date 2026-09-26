@@ -84,12 +84,9 @@
   .about-grid p{color:var(--ink-dim); max-width:58ch;}
   @media (max-width:640px){ .about-grid{grid-template-columns:1fr; text-align:center; padding:28px;} .about-grid img{margin:0 auto; max-width:150px;} }
 
-  /* ---- work carousel ---- */
-  .carousel-wrap{position:relative;}
-  .work-carousel{display:flex; gap:20px; overflow-x:auto; scroll-snap-type:x mandatory; padding:6px 6px 22px; scrollbar-width:thin;}
-  .work-carousel::-webkit-scrollbar{height:6px;}
-  .work-carousel::-webkit-scrollbar-thumb{background:var(--glass-b); border-radius:6px;}
-  .project{scroll-snap-align:start; flex:0 0 auto; width:280px; padding:24px; transition:transform .3s, border-color .3s;}
+  /* ---- work grid ---- */
+  .projects{display:grid; grid-template-columns:repeat(3,1fr); gap:20px;}
+  .project{padding:24px; transition:transform .3s, border-color .3s;}
   .project:hover{transform:translateY(-6px); border-color:var(--accent);}
   .project-top{display:flex; align-items:center; gap:12px; margin-bottom:14px;}
   .project-top img{width:48px; height:48px; object-fit:contain; border-radius:10px; background:rgba(255,255,255,.06); padding:6px;}
@@ -103,9 +100,8 @@
   .store-links a{display:inline-flex; align-items:center; gap:5px; font-size:.74rem; color:var(--ink); border:1px solid var(--glass-b); padding:6px 11px; border-radius:20px; transition:.2s;}
   .store-links a:hover{color:#03111c; background:var(--accent); border-color:var(--accent);}
   .store-links svg{width:12px; height:12px; fill:currentColor;}
-  .carousel-nav{display:flex; gap:10px; margin-top:6px;}
-  .carousel-nav button{width:38px; height:38px; border-radius:50%; border:1px solid var(--glass-b); background:var(--glass); color:var(--ink); cursor:pointer; font-size:1rem;}
-  .carousel-nav button:hover{border-color:var(--accent); color:var(--accent);}
+  @media (max-width:860px){ .projects{grid-template-columns:1fr 1fr;} }
+  @media (max-width:560px){ .projects{grid-template-columns:1fr;} }
 
   /* ---- experience ---- */
   .timeline{position:relative; padding-left:28px;}
@@ -134,7 +130,7 @@
 
   .reveal{opacity:0; transform:translateY(24px); transition:opacity .6s cubic-bezier(.2,.7,.2,1), transform .6s cubic-bezier(.2,.7,.2,1);}
   .reveal.in{opacity:1; transform:translateY(0);}
-  .timeline .reveal{transition-delay:calc(var(--i,0) * 70ms);}
+  .timeline .reveal, .projects .reveal{transition-delay:calc(var(--i,0) * 70ms);}
   @media (prefers-reduced-motion:reduce){ .reveal{opacity:1; transform:none; transition:none;} }
 </style>
 </head>
@@ -196,10 +192,9 @@
 <section id="work">
   <div class="wrap">
     <div class="section-head"><div class="eyebrow">Selected work</div><h2>9 of 15+ published apps</h2></div>
-    <div class="carousel-wrap">
-      <div class="work-carousel glass" id="carousel" style="background:transparent; border:none; backdrop-filter:none; padding:0;">
+    <div class="projects">
 
-        <div class="project glass">
+        <div class="project glass reveal" style="--i:0;">
           <div class="project-top"><img src="site-assets/aabir.png" alt="AABIR logo"><div><div class="tag">Ride-hailing</div><h3>AABIR<span class="sub">Rider app · عابر</span></h3></div></div>
           <p>Real-time streaming maps over WebSocket and a full notification system for a smooth rider experience.</p>
           <div class="chips"><span class="chip">Flutter</span><span class="chip">Bloc/Cubit</span><span class="chip">WebSocket</span></div>
@@ -209,7 +204,7 @@
           </div>
         </div>
 
-        <div class="project glass">
+        <div class="project glass reveal" style="--i:1;">
           <div class="project-top"><img src="site-assets/aabir.png" alt="AABIR Captain logo"><div><div class="tag">Ride-hailing — driver</div><h3>Aabir Captain<span class="sub">عابر كابتن</span></h3></div></div>
           <p>Driver-facing companion app — accept nearby ride requests and run trips on the same real-time stack.</p>
           <div class="chips"><span class="chip">Flutter</span><span class="chip">Bloc/Cubit</span></div>
@@ -219,7 +214,7 @@
           </div>
         </div>
 
-        <div class="project glass">
+        <div class="project glass reveal" style="--i:2;">
           <div class="project-top"><img src="site-assets/zeem.png" alt="Zeem logo"><div><div class="tag">Multi-service · 9+</div><h3>Zeem Customer<span class="sub">زيم</span></h3></div></div>
           <p>Uber-like multi-service app covering water delivery, order delivery and passenger delivery in one platform.</p>
           <div class="chips"><span class="chip">Flutter</span><span class="chip">Firebase</span></div>
@@ -229,7 +224,7 @@
           </div>
         </div>
 
-        <div class="project glass">
+        <div class="project glass reveal" style="--i:3;">
           <div class="project-top"><img src="site-assets/zeemDriver.png" alt="Zeem Driver logo"><div><div class="tag">Driver companion</div><h3>Zeem Driver</h3></div></div>
           <p>Receive delivery requests from nearby customers and businesses, manage trips on your own schedule.</p>
           <div class="chips"><span class="chip">Flutter</span><span class="chip">Real-time</span></div>
@@ -239,7 +234,7 @@
           </div>
         </div>
 
-        <div class="project glass">
+        <div class="project glass reveal" style="--i:4;">
           <div class="project-top"><img src="site-assets/eyewater.png" alt="Al Ain Water logo"><div><div class="tag">Utilities — Iraq</div><h3>Al Ain Water</h3></div></div>
           <p>Main water distribution company across Iraq, covered by four linked apps — Admin, Driver, User and Store.</p>
           <div class="chips"><span class="chip">Multi-app</span><span class="chip">Orders</span></div>
@@ -249,7 +244,7 @@
           </div>
         </div>
 
-        <div class="project glass">
+        <div class="project glass reveal" style="--i:5;">
           <div class="project-top"><img src="site-assets/story.png" alt="StoryLingo logo"><div><div class="tag">Education</div><h3>StoryLingo</h3></div></div>
           <p>English-learning app teaching through reading and listening to translated stories.</p>
           <div class="chips"><span class="chip">Flutter</span><span class="chip">Firebase</span></div>
@@ -259,7 +254,7 @@
           </div>
         </div>
 
-        <div class="project glass">
+        <div class="project glass reveal" style="--i:6;">
           <div class="project-top"><img src="site-assets/egytour.png" alt="Egy Tour logo"><div><div class="tag">Travel &amp; tourism</div><h3>Egy Tour</h3></div></div>
           <p>Tourism app showcasing Egypt's top destinations with interactive maps and offline support.</p>
           <div class="chips"><span class="chip">Flutter</span><span class="chip">Offline</span></div>
@@ -269,7 +264,7 @@
           </div>
         </div>
 
-        <div class="project glass">
+        <div class="project glass reveal" style="--i:7;">
           <div class="project-top"><img src="site-assets/alhamidia.png" alt="Al Humaidia logo"><div><div class="tag">Real estate</div><h3 style="direction:rtl; text-align:right;">مجمع الحميدية</h3></div></div>
           <p>Residential-community app giving homeowners access to services and privacy within a housing compound.</p>
           <div class="chips"><span class="chip">Flutter</span><span class="chip">RTL</span></div>
@@ -279,7 +274,7 @@
           </div>
         </div>
 
-        <div class="project glass">
+        <div class="project glass reveal" style="--i:8;">
           <div class="project-top"><img src="site-assets/foryou.png" alt="For You logo"><div><div class="tag">Beauty / salon</div><h3>For You<span class="sub">فوريو</span></h3></div></div>
           <p>Comprehensive salon and laser-session management app for streamlining bookings and daily operations.</p>
           <div class="chips"><span class="chip">Flutter</span><span class="chip">Bookings</span></div>
@@ -289,11 +284,6 @@
           </div>
         </div>
 
-      </div>
-      <div class="carousel-nav">
-        <button id="prevBtn" aria-label="Previous">‹</button>
-        <button id="nextBtn" aria-label="Next">›</button>
-      </div>
     </div>
     <p style="color:var(--ink-dim); font-size:.82rem; margin-top:4px;">+ 150 freelance builds since 2021 across e-commerce, delivery and business tools.</p>
   </div>
@@ -396,10 +386,6 @@
   mobileNav.querySelectorAll('a').forEach(function(a){
     a.addEventListener('click', function(){ burger.classList.remove('open'); mobileNav.classList.remove('open'); });
   });
-
-  var carousel = document.getElementById('carousel');
-  document.getElementById('prevBtn').addEventListener('click', function(){ carousel.scrollBy({left:-300, behavior:'smooth'}); });
-  document.getElementById('nextBtn').addEventListener('click', function(){ carousel.scrollBy({left:300, behavior:'smooth'}); });
 
   var sections = ['work','experience','skills','contact'].map(function(id){ return document.getElementById(id); }).filter(Boolean);
   var navLinks = document.querySelectorAll('#nav a[data-nav]');
