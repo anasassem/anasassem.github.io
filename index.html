@@ -97,18 +97,60 @@
   .contact-links a{border-bottom:1px solid var(--line); padding-bottom:4px; font-size:1rem; transition:border-color .2s, color .2s;}
   .contact-links a:hover{border-color:var(--accent); color:var(--accent);}
   .fineprint{margin-top:60px; color:var(--text-dim); font-size:.8rem;}
+
+  /* ---- motion ---- */
+  #progress{position:fixed; top:0; left:0; height:2px; width:0%; background:var(--accent); z-index:30; transition:width .1s linear;}
+
+  .reveal{opacity:0; transform:translateY(28px); transition:opacity .7s cubic-bezier(.2,.7,.2,1), transform .7s cubic-bezier(.2,.7,.2,1);}
+  .reveal.in{opacity:1; transform:translateY(0);}
+  .projects .reveal{transition-delay:calc(var(--i,0) * 70ms);}
+  .skill-groups .reveal{transition-delay:calc(var(--i,0) * 90ms);}
+
+  .hero-fade{opacity:0; transform:translateY(16px); animation:heroIn .8s cubic-bezier(.2,.7,.2,1) forwards;}
+  .hero-fade:nth-child(1){animation-delay:.05s;}
+  .hero-fade:nth-child(2){animation-delay:.18s;}
+  .hero-fade:nth-child(3){animation-delay:.32s;}
+  .hero-fade:nth-child(4){animation-delay:.44s;}
+  @keyframes heroIn{to{opacity:1; transform:translateY(0);}}
+
+  nav a{position:relative;}
+  nav a::after{content:''; position:absolute; left:0; bottom:-4px; width:0; height:1px; background:var(--accent); transition:width .25s ease;}
+  nav a:hover::after, nav a.active::after{width:100%;}
+  nav a.active{color:var(--text);}
+
+  .project{transition:transform .35s cubic-bezier(.2,.7,.2,1), border-color .35s, box-shadow .35s;}
+  .project:hover{transform:translateY(-5px); border-color:var(--accent); box-shadow:0 18px 40px -20px rgba(55,198,174,.25);}
+  .project-visual img{transition:transform .4s ease;}
+  .project:hover .project-visual img{transform:scale(1.06);}
+
+  .btn{transition:transform .2s ease, filter .2s ease, border-color .2s ease;}
+  .btn:hover{transform:translateY(-2px);}
+
+  .job{transition:padding-left .3s ease, border-color .3s ease;}
+  .job:hover{padding-left:12px; border-color:var(--accent);}
+
+  .about-grid img{transition:transform .5s ease;}
+  .about-grid img:hover{transform:scale(1.04) rotate(-1deg);}
+
+  @media (prefers-reduced-motion:reduce){
+    .reveal{opacity:1; transform:none; transition:none;}
+    .hero-fade{opacity:1; transform:none; animation:none;}
+    .project:hover, .job:hover, .about-grid img:hover{transform:none;}
+  }
 </style>
 </head>
 <body>
 
+<div id="progress"></div>
+
 <header>
   <div class="wrap">
     <div class="logo">Anas Asim</div>
-    <nav>
-      <a href="#work">Work</a>
-      <a href="#experience">Experience</a>
-      <a href="#skills">Skills</a>
-      <a href="#contact">Contact</a>
+    <nav id="nav">
+      <a href="#work" data-nav="work">Work</a>
+      <a href="#experience" data-nav="experience">Experience</a>
+      <a href="#skills" data-nav="skills">Skills</a>
+      <a href="#contact" data-nav="contact">Contact</a>
     </nav>
   </div>
 </header>
@@ -116,19 +158,19 @@
 <section class="hero">
   <div class="wrap hero-grid">
     <div>
-      <h1>Building the apps that move things — and people.</h1>
-      <p class="lede">Senior Flutter developer with four years shipping delivery, ride-hailing and e-commerce apps for Arabic-speaking markets — from checkout flows to payment-gateway integrations.</p>
-      <div class="stats">
-        <div class="stat"><b>4+</b><span>years experience</span></div>
-        <div class="stat"><b>150+</b><span>freelance projects delivered</span></div>
-        <div class="stat"><b>15+</b><span>live on app stores</span></div>
+      <h1 class="hero-fade">Building the apps that move things — and people.</h1>
+      <p class="lede hero-fade">Senior Flutter developer with four years shipping delivery, ride-hailing and e-commerce apps for Arabic-speaking markets — from checkout flows to payment-gateway integrations.</p>
+      <div class="stats hero-fade">
+        <div class="stat"><b data-count="4" data-suffix="+">0</b><span>years experience</span></div>
+        <div class="stat"><b data-count="150" data-suffix="+">0</b><span>freelance projects delivered</span></div>
+        <div class="stat"><b data-count="15" data-suffix="+">0</b><span>live on app stores</span></div>
       </div>
-      <div class="cta-row">
+      <div class="cta-row hero-fade">
         <a class="btn primary" href="#work">See the work</a>
         <a class="btn ghost" href="mailto:anasasim261@gmail.com">Get in touch</a>
       </div>
     </div>
-    <div class="route-box">
+    <div class="route-box hero-fade" style="animation-delay:.25s;">
       <svg viewBox="0 0 320 260" fill="none">
         <circle class="route-pin a" cx="46" cy="46" r="7" fill="#37c6ae"/>
         <circle class="route-pin b" cx="270" cy="214" r="7" fill="#37c6ae"/>
@@ -139,7 +181,7 @@
 </section>
 
 <section id="about">
-  <div class="wrap about-grid">
+  <div class="wrap about-grid reveal">
     <img src="site-assets/photo.png" alt="Anas Asim">
     <div>
       <h2 style="font-size:1.6rem; margin-bottom:16px;">About</h2>
@@ -150,13 +192,13 @@
 
 <section id="work">
   <div class="wrap">
-    <div class="section-head">
+    <div class="section-head reveal">
       <h2>Selected work</h2>
       <span class="count">8 of 15+ published apps</span>
     </div>
     <div class="projects">
 
-      <div class="project">
+      <div class="project reveal" style="--i:0;">
         <div class="project-visual"><img src="site-assets/aabir.png" alt="AABIR logo"></div>
         <div class="project-body">
           <div class="tag">Delivery platform</div>
@@ -166,7 +208,7 @@
         </div>
       </div>
 
-      <div class="project">
+      <div class="project reveal" style="--i:1;">
         <div class="project-visual"><img src="site-assets/zeem.png" alt="Zeem logo"></div>
         <div class="project-body">
           <div class="tag">Multi-service platform</div>
@@ -176,7 +218,7 @@
         </div>
       </div>
 
-      <div class="project">
+      <div class="project reveal" style="--i:2;">
         <div class="project-visual"><img src="site-assets/zeemDriver.png" alt="Zeem Driver logo"></div>
         <div class="project-body">
           <div class="tag">Driver companion app</div>
@@ -186,7 +228,7 @@
         </div>
       </div>
 
-      <div class="project">
+      <div class="project reveal" style="--i:3;">
         <div class="project-visual"><img src="site-assets/eyewater.png" alt="Al Ain Water logo"></div>
         <div class="project-body">
           <div class="tag">Utilities / logistics — Iraq</div>
@@ -196,7 +238,7 @@
         </div>
       </div>
 
-      <div class="project">
+      <div class="project reveal" style="--i:4;">
         <div class="project-visual"><img src="site-assets/story.png" alt="StoryLingo logo"></div>
         <div class="project-body">
           <div class="tag">Education</div>
@@ -206,7 +248,7 @@
         </div>
       </div>
 
-      <div class="project">
+      <div class="project reveal" style="--i:5;">
         <div class="project-visual"><img src="site-assets/egytour.png" alt="Egy Tour logo"></div>
         <div class="project-body">
           <div class="tag">Travel &amp; tourism</div>
@@ -216,7 +258,7 @@
         </div>
       </div>
 
-      <div class="project">
+      <div class="project reveal" style="--i:6;">
         <div class="project-visual"><img src="site-assets/alhamidia.png" alt="Al Humaidia logo"></div>
         <div class="project-body">
           <div class="tag">Real estate</div>
@@ -226,7 +268,7 @@
         </div>
       </div>
 
-      <div class="project">
+      <div class="project reveal" style="--i:7;">
         <div class="project-visual"><img src="site-assets/foryou.png" alt="For You logo"></div>
         <div class="project-body">
           <div class="tag">Beauty / salon management</div>
@@ -243,9 +285,9 @@
 
 <section id="experience">
   <div class="wrap">
-    <div class="section-head"><h2>Experience</h2></div>
+    <div class="section-head reveal"><h2>Experience</h2></div>
 
-    <div class="job">
+    <div class="job reveal" style="--i:0;">
       <div class="when">2025 — Present</div>
       <div>
         <h3>Advanced Solutions for Transportation Services</h3>
@@ -254,7 +296,7 @@
       </div>
     </div>
 
-    <div class="job">
+    <div class="job reveal" style="--i:1;">
       <div class="when">2024 — 2025</div>
       <div>
         <h3>RFID Saudi</h3>
@@ -263,7 +305,7 @@
       </div>
     </div>
 
-    <div class="job">
+    <div class="job reveal" style="--i:2;">
       <div class="when">2024 — 2024</div>
       <div>
         <h3>SkyCrew</h3>
@@ -272,7 +314,7 @@
       </div>
     </div>
 
-    <div class="job">
+    <div class="job reveal" style="--i:3;">
       <div class="when">2021 — Present</div>
       <div>
         <h3>Independent Freelance</h3>
@@ -286,21 +328,21 @@
 
 <section id="skills">
   <div class="wrap">
-    <div class="section-head"><h2>Skills</h2></div>
+    <div class="section-head reveal"><h2>Skills</h2></div>
     <div class="skill-groups">
-      <div class="skill-group">
+      <div class="skill-group reveal" style="--i:0;">
         <h4>Core</h4>
         <div class="chips tight">
           <span class="chip">Flutter</span><span class="chip">Dart</span><span class="chip">Clean Architecture</span><span class="chip">Responsive UI</span>
         </div>
       </div>
-      <div class="skill-group">
+      <div class="skill-group reveal" style="--i:1;">
         <h4>State &amp; data</h4>
         <div class="chips tight">
           <span class="chip">Bloc</span><span class="chip">Cubit</span><span class="chip">Provider</span><span class="chip">GetX</span>
         </div>
       </div>
-      <div class="skill-group">
+      <div class="skill-group reveal" style="--i:2;">
         <h4>Platform &amp; ops</h4>
         <div class="chips tight">
           <span class="chip">Firebase</span><span class="chip">REST APIs</span><span class="chip">CI/CD</span><span class="chip">WebSocket</span>
@@ -322,6 +364,71 @@
     <p class="fineprint">Cairo, Egypt · Available for remote roles &amp; freelance work</p>
   </div>
 </footer>
+
+<script>
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // scroll progress bar
+  var bar = document.getElementById('progress');
+  function updateProgress(){
+    var h = document.documentElement;
+    var scrolled = h.scrollTop || document.body.scrollTop;
+    var height = h.scrollHeight - h.clientHeight;
+    bar.style.width = (height > 0 ? (scrolled / height) * 100 : 0) + '%';
+  }
+  document.addEventListener('scroll', updateProgress, {passive:true});
+  updateProgress();
+
+  // reveal-on-scroll
+  var revealEls = document.querySelectorAll('.reveal');
+  if(reduce){
+    revealEls.forEach(function(el){ el.classList.add('in'); });
+  } else if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          entry.target.classList.add('in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, {threshold:.15, rootMargin:'0px 0px -40px 0px'});
+    revealEls.forEach(function(el){ io.observe(el); });
+  } else {
+    revealEls.forEach(function(el){ el.classList.add('in'); });
+  }
+
+  // animated stat counters (run once, on hero load)
+  document.querySelectorAll('.stat b[data-count]').forEach(function(el){
+    var target = parseInt(el.getAttribute('data-count'), 10);
+    var suffix = el.getAttribute('data-suffix') || '';
+    if(reduce){ el.textContent = target + suffix; return; }
+    var start = null, duration = 1100;
+    function step(ts){
+      if(!start) start = ts;
+      var progress = Math.min((ts - start) / duration, 1);
+      var eased = 1 - Math.pow(1 - progress, 3);
+      el.textContent = Math.round(eased * target) + suffix;
+      if(progress < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  });
+
+  // active nav link on scroll
+  var sections = ['work','experience','skills','contact'].map(function(id){ return document.getElementById(id); }).filter(Boolean);
+  var navLinks = document.querySelectorAll('#nav a[data-nav]');
+  function updateActiveNav(){
+    var pos = window.scrollY + window.innerHeight * 0.3;
+    var current = null;
+    sections.forEach(function(sec){ if(sec.offsetTop <= pos) current = sec.id; });
+    navLinks.forEach(function(link){
+      link.classList.toggle('active', link.getAttribute('data-nav') === current);
+    });
+  }
+  document.addEventListener('scroll', updateActiveNav, {passive:true});
+  updateActiveNav();
+})();
+</script>
 
 </body>
 </html>
