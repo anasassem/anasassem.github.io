@@ -119,6 +119,14 @@
   .store-links a{display:inline-flex; align-items:center; gap:5px; font-size:.74rem; color:var(--ink); border:1px solid var(--glass-b); padding:6px 11px; border-radius:20px; transition:.2s;}
   .store-links a:hover{color:#03111c; background:var(--accent); border-color:var(--accent);}
   .store-links svg{width:12px; height:12px; fill:currentColor;}
+  .case-toggle{display:inline-block; margin-top:12px; background:none; border:none; color:var(--accent); font-size:.78rem; cursor:pointer; padding:0; font-family:var(--font-body);}
+  .case-toggle:hover{text-decoration:underline;}
+  .case-detail{display:none; margin-top:14px; padding-top:14px; border-top:1px solid var(--glass-b);}
+  .case-detail.open{display:block;}
+  .case-detail .stack{font-size:.78rem; color:var(--ink-dim); margin-bottom:10px; line-height:1.6;}
+  .case-detail .stack b{color:var(--ink); font-weight:500;}
+  .case-detail ul{padding-left:18px; margin:0;}
+  .case-detail li{color:var(--ink-dim); font-size:.82rem; margin-bottom:7px; line-height:1.55;}
   @media (max-width:860px){ .projects{grid-template-columns:1fr 1fr;} }
   @media (max-width:560px){ .projects{grid-template-columns:1fr;} }
 
@@ -173,10 +181,10 @@
     </nav>
     <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
   </div>
-  <div class="mobile-nav" id="mobileNav">
-    <a href="#work">Work</a><a href="#experience">Experience</a><a href="#skills">Skills</a><a href="#contact">Contact</a>
-  </div>
 </header>
+<div class="mobile-nav" id="mobileNav">
+  <a href="#work">Work</a><a href="#experience">Experience</a><a href="#skills">Skills</a><a href="#contact">Contact</a>
+</div>
 
 <section class="hero">
   <div class="bubbles" id="bubbles"></div>
@@ -251,21 +259,52 @@
 
         <div class="project glass reveal" style="--i:2;">
           <div class="project-top"><img src="site-assets/zeem.png" alt="Zeem logo"><div><div class="tag">Multi-service · 9+</div><h3>Zeem Customer<span class="sub">زيم</span></h3></div></div>
-          <p>Uber-like multi-service app covering water delivery, order delivery and passenger delivery in one platform.</p>
-          <div class="chips"><span class="chip">Flutter</span><span class="chip">Firebase</span></div>
+          <p>The customer-facing side of the Zeem platform — book rides, track drivers in real time, and pay through multiple regional gateways.</p>
+          <div class="chips"><span class="chip">Flutter</span><span class="chip">Firebase</span><span class="chip">Payments</span></div>
           <div class="store-links">
             <a href="https://apps.apple.com/eg/app/%D8%B2%D9%8A%D9%85-zeem/id6443638059" target="_blank" rel="noopener"><svg><use href="#ic-apple"/></svg>App Store</a>
             <a href="https://play.google.com/store/apps/details?id=com.zeem.customer&hl=en" target="_blank" rel="noopener"><svg><use href="#ic-google"/></svg>Play</a>
           </div>
+          <button class="case-toggle">Case study ↓</button>
+          <div class="case-detail">
+            <div class="stack"><b>Stack:</b> Flutter, Dart, Firebase, Google Maps, Payment Gateways (Stripe, PayPal, Razorpay, Paytabs), GetX, Dio</div>
+            <ul>
+              <li>Built the ride-booking flow with Google Places Autocomplete for origin/destination and real-time fare estimation.</li>
+              <li>Built live driver tracking on Google Maps with real-time polyline updates, ETA calculations and animated markers.</li>
+              <li>Integrated multiple payment gateways (Stripe, PayPal, Razorpay, Paytabs) to support diverse regional payment methods.</li>
+              <li>Implemented real-time chat and voice messaging between customers and drivers.</li>
+              <li>Built a rating &amp; review system for completed rides.</li>
+              <li>Handled push notifications for ride-status updates — driver assigned, arriving, trip completed.</li>
+              <li>Delivered full Arabic/English localization with RTL support for the Saudi market.</li>
+            </ul>
+          </div>
         </div>
 
         <div class="project glass reveal" style="--i:3;">
-          <div class="project-top"><img src="site-assets/zeemDriver.png" alt="Zeem Driver logo"><div><div class="tag">Driver companion</div><h3>Zeem Driver</h3></div></div>
-          <p>Receive delivery requests from nearby customers and businesses, manage trips on your own schedule.</p>
-          <div class="chips"><span class="chip">Flutter</span><span class="chip">Real-time</span></div>
+          <div class="project-top"><img src="site-assets/zeemDriver.png" alt="Zeem Driver logo"><div><div class="tag">Driver companion · 16+ modules</div><h3>Zeem Driver</h3></div></div>
+          <p>A large-scale, production-grade driver app — the primary tool drivers use to manage rides, earnings and daily operations.</p>
+          <div class="chips"><span class="chip">Flutter</span><span class="chip">Clean Architecture</span><span class="chip">Real-time</span></div>
           <div class="store-links">
             <a href="https://apps.apple.com/eg/app/%D8%B3%D8%A7%D8%A6%D9%82-%D8%B2%D9%8A%D9%85-zeem-driver/id6443723481" target="_blank" rel="noopener"><svg><use href="#ic-apple"/></svg>App Store</a>
             <a href="https://play.google.com/store/apps/details?id=com.zeem.driver&hl=en" target="_blank" rel="noopener"><svg><use href="#ic-google"/></svg>Play</a>
+          </div>
+          <button class="case-toggle">Case study ↓</button>
+          <div class="case-detail">
+            <div class="stack"><b>Stack:</b> Flutter, Dart, Firebase (Firestore, Auth, Crashlytics, FCM, Analytics, App Check), Google Maps, GetX, Dio, RxDart, Sentry, UXCam, AppsFlyer, Patrol</div>
+            <ul>
+              <li>Architected the app with feature-based Clean Architecture (data/presentation per feature) and GetX dependency injection, enabling the team to work on independent modules in parallel.</li>
+              <li>Built real-time ride management — order acceptance, live polyline tracking on Google Maps, and trip-completion workflows.</li>
+              <li>Implemented real-time in-app chat with audio recording and voice messages between drivers and customers.</li>
+              <li>Built a digital wallet for earnings, transactions and financial summaries, plus a referral program with reward tracking.</li>
+              <li>Added a car-faults reporting module with media attachments, and a violations &amp; complaints management system for drivers.</li>
+              <li>Integrated resilient background location tracking that stays accurate in low-connectivity areas.</li>
+              <li>Designed a Zeem Premium subscription module for premium driver features.</li>
+              <li>Implemented FCM push notifications with local notification handling for alerts, promotions and system messages.</li>
+              <li>Configured multi-flavor builds (Dev/Staging/Test/Live) with environment-specific endpoints and Firestore collections.</li>
+              <li>Set up Crashlytics, Sentry and UXCam for crash/error monitoring and session analytics, plus AppsFlyer for attribution and deep linking.</li>
+              <li>Added biometric authentication and full Arabic/English localization with RTL support.</li>
+              <li>Wrote automated E2E tests with Patrol for critical flows, including native permission-dialog handling.</li>
+            </ul>
           </div>
         </div>
 
@@ -420,6 +459,14 @@
   burger.addEventListener('click', function(){ burger.classList.toggle('open'); mobileNav.classList.toggle('open'); });
   mobileNav.querySelectorAll('a').forEach(function(a){
     a.addEventListener('click', function(){ burger.classList.remove('open'); mobileNav.classList.remove('open'); });
+  });
+
+  document.querySelectorAll('.case-toggle').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var detail = btn.nextElementSibling;
+      var open = detail.classList.toggle('open');
+      btn.textContent = open ? 'Hide case study ↑' : 'Case study ↓';
+    });
   });
 
   var sections = ['work','experience','skills','contact'].map(function(id){ return document.getElementById(id); }).filter(Boolean);
